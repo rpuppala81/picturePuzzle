@@ -1,0 +1,105 @@
+{
+    "bundles": [
+      {
+        "name": "gameAssets",
+        "assets": [
+          {
+            "alias": "bg",
+            "src": "./assets/images/background.png"
+          },
+          {
+            "alias": "coin-anim",
+            "src": "./assets/images/coin-anim.json"
+          },
+          {
+            "alias": "chiru",
+            "src": "./assets/images/chiru1.png"
+          },
+          {
+            "alias": "aa",
+            "src": "./assets/images/aa.jpg"
+          },
+          {
+            "alias": "amithabh",
+            "src": "./assets/images/amithabh.jpg"
+          },
+          {
+            "alias": "anr",
+            "src": "./assets/images/anr.jpg"
+          },
+          {
+            "alias": "ntr",
+            "src": "./assets/images/ntr.jpg"
+          },
+          {
+            "alias": "rc",
+            "src": "./assets/images/rc.jpg"
+          },
+          {
+            "alias": "jrntr",
+            "src": "./assets/images/jrntr.jpg"
+          },
+          {
+            "alias": "kamal",
+            "src": "./assets/images/kamal.jpg"
+          },
+          {
+            "alias": "krishna",
+            "src": "./assets/images/krishna.jpg"
+          },
+          {
+            "alias": "krishnam",
+            "src": "./assets/images/krishnam.jpg"
+          },
+          {
+            "alias": "mahesh",
+            "src": "./assets/images/mahesh.jpg"
+          },
+          {
+            "alias": "mammooty",
+            "src": "./assets/images/mammooty.jpg"
+          },
+          {
+            "alias": "mohanlal",
+            "src": "./assets/images/mohanlal.jpg"
+          },
+          {
+            "alias": "pk",
+            "src": "./assets/images/pk.jpg"
+          },
+          {
+            "alias": "prabhash",
+            "src": "./assets/images/prabhash.jpg"
+          },
+          {
+            "alias": "rajini",
+            "src": "./assets/images/rajini.jpg"
+          },
+          {
+            "alias": "shobhan",
+            "src": "./assets/images/shoban.jpg"
+          },
+          {
+            "alias": "venkatesh",
+            "src": "./assets/images/venkatesh.jpg"
+          },
+          {
+            "alias": "balakr",
+            "src": "./assets/images/balak.jpg"
+          },
+          {
+            "alias": "bramhi",
+            "src": "./assets/images/bramhi.jpg"
+          },
+          {
+            "alias": "nagarjun",
+            "src": "./assets/images/nagarjun.jpg"
+          },
+          {
+            "alias": "empty",
+            "src": "./assets/images/empty.png"
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,41 @@
+{
+    "name": "spinPlayGame",
+    "version": "0.0.1",
+    "description": "slot game",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "start": "webpack serve --mode=development",
+        "debug": "webpack --mode=none",
+        "build": "npm run clean && npm run build-only",
+        "build-only": "webpack --mode=production",
+        "clean": "rimraf dist"
+    },
+    "author": {
+        "name": "Rajesh Puppala",
+        "email": "hairajeshkumar@gmail.com"
+    },
+    "dependencies": {
+        "@pixi/spine-pixi": "^2.1.0",
+        "@pixi/text-bitmap": "^7.4.2",
+        "@pixi/ui": "^2.2.2",
+        "@types/howler": "^2.2.11",
+        "gsap": "^3.12.5",
+        "howler": "^2.2.4",
+        "pixi.js": "^8.9.1"
+    },
+    "devDependencies": {
+        "@pixi/devtools": "^2.0.1",
+        "copy-webpack-plugin": "^12.0.2",
+        "html-webpack-plugin": "^5.6.0",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^3.3.3",
+        "rimraf": "^5.0.5",
+        "terser-webpack-plugin": "^5.3.10",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.3.3",
+        "webpack": "^5.90.3",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^5.0.2"
+    }
+}
