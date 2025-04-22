@@ -1,4 +1,4 @@
-import { Application, Container, EventEmitter, Graphics, Rectangle, Sprite, Text, Texture, /*Rectangle, Sprite, Texture*/ } from "pixi.js";
+import { Application, Container, EventEmitter, Graphics, PointData, Rectangle, Sprite, Text, Texture, /*Rectangle, Sprite, Texture*/ } from "pixi.js";
 import { GameConstants } from "../Constants/GameConstants";
 //import { Select } from "@pixi/ui";
 
@@ -34,7 +34,7 @@ export class GameScene extends Container {
         hintText.x = 88;
         hintText.y = 75;
         this.addChild(hintText);
-        let insText = new Text("SWAP IMAGES WITH EMPTY\n SLOT BY CLICK ", GameConstants.TEXT_FONT);
+        let insText = new Text("SWAP ADJACENT IMAGES \n WITH EMPTY SLOT BY CLICK ", GameConstants.TEXT_FONT);
         insText.x = 0;
         insText.y = -300;
         this.addChild(insText);
@@ -74,14 +74,14 @@ export class GameScene extends Container {
         let threeText = new Text("3X3", GameConstants.LEVEL_FONT);
         threeText.interactive = true;
         threeText.cursor = 'pointer';
-        threeText.x = 10;
+        threeText.x = 25;//10;
         threeText.y = 70;
         this.addChild(threeText);
         threeText.on('pointerup', () => { this.currentLevel = 3; this.resetTheGame(), this });
         let fourText = new Text("4X4", GameConstants.LEVEL_FONT);
         fourText.interactive = true;
         fourText.cursor = 'pointer';
-        fourText.x = 50;
+        fourText.x = 275;//50;
         fourText.y = 70;
         this.addChild(fourText);
         fourText.on('pointerup', () => { this.currentLevel = 4; this.resetTheGame(), this });
@@ -157,6 +157,7 @@ export class GameScene extends Container {
         fiveText.x = 240;
         fiveText.y = 70;
         this.addChild(fiveText);
+        fiveText.visible = false;
         fiveText.on('pointerup', () => { this.currentLevel = 5; this.resetTheGame(), this });
         let sixText = new Text("6X6", GameConstants.LEVEL_FONT);
         sixText.interactive = true;
@@ -164,6 +165,7 @@ export class GameScene extends Container {
         sixText.x = 285;
         sixText.y = 70;
         this.addChild(sixText);
+        sixText.visible = false;
         sixText.on('pointerup', () => { this.currentLevel = 6; this.resetTheGame(), this });
         let chiruText = new Text("CHIRU", GameConstants.OPT_FONT);
         chiruText.interactive = true;
@@ -249,7 +251,7 @@ export class GameScene extends Container {
     }
 
     private resetTheGame(picStr: any = null, texture: any = null): void {
-        console.log(" in reset the game " + picStr);
+        //console.log(" in reset the game " + picStr);
         texture;
         this.winText.visible = false;
         this.currentRows = this.currentLevel;
@@ -280,12 +282,12 @@ export class GameScene extends Container {
         //let count: number = 1;
         for(let l = 0; l < GameConstants.LEVELS.length; l++) {
             let level: number;
-            console.log(l);
+            //console.log(l);
             if(texture == null) 
                 level = this.currentLevel;
             else {
                 level = GameConstants.LEVELS[l];
-                console.log(l + " " + level);
+                //console.log(l + " " + level);
                 //this.currentRows = l;
                 //this.currentColumns = l;
                 rows = level;
@@ -301,8 +303,8 @@ export class GameScene extends Container {
                     numbers.sort(() => Math.random() - 0.5);
             }
             let container: any = this.getChildByName("slots" + level.toString() + this.currentPic);
-            console.log("slots" + level.toString() + this.currentPic);
-            console.log("container.name " + container.name);
+            //console.log("slots" + level.toString() + this.currentPic);
+            //console.log("container.name " + container.name);
             //container.x = 300 * l; 
             container.visible = true;
             containerId = 0;
@@ -341,14 +343,15 @@ export class GameScene extends Container {
                         let sliceWidth = actualWidth / rows;
                         let sliceHeight = actualHeight / cols;
                         //this.offOtherPics(container);
-                        let imageRow: number = Math.floor(numbers[containerId] / cols);
-                        let imageCol: number = numbers[containerId] % rows;
+                        let imageRow: number = Math.floor((numbers[containerId] - 1) / cols);
+                        let imageCol: number = (numbers[containerId] - 1) % rows;
                         //console.log(this.numbers[containerId] + " " + imageRow + " " + imageCol)
                         let rect: any;
-                        if (numString == " ")
+                        numString;
+                        /*if (numString == " ")
                             rect = new Rectangle(0, 0, sliceWidth, sliceHeight)
-                        else
-                            rect = new Rectangle(imageCol * sliceWidth, imageRow * sliceHeight, sliceWidth, sliceHeight);
+                        else*/
+                        rect = new Rectangle(imageCol * sliceWidth, imageRow * sliceHeight, sliceWidth, sliceHeight);
                         //text.anchor.set(0.5);
                         //container.name = numString;
                         //console.log(rect);
@@ -359,7 +362,7 @@ export class GameScene extends Container {
                     child.visible = true;
                     child.interactive = true;
                     if(texture != null) {
-                        console.log("levelSliceWidth " + levelSliceWidth);
+                        //console.log("levelSliceWidth " + levelSliceWidth);
                         child.x = 75 + col * levelSliceWidth;//this.sliceWidth;
                         child.y = -190 + row * levelSliceHeight;//this.sliceHeight;
                     } else {
@@ -370,12 +373,12 @@ export class GameScene extends Container {
                     containerId++;
                 }
             }
-            console.log(" reset " + l);
+            //console.log(" reset " + l);
             if(texture == null) {
                 l = GameConstants.LEVELS.length;
-                console.log(" level length update ...." + l);
+                //console.log(" level length update ...." + l);
             }
-            console.log('reset game for end ' + l); 
+            //console.log('reset game for end ' + l); 
         }
         
         hitContainer = this.getChildByName("hitContainer")?.getChildByName("image" + this.currentPic);
@@ -386,7 +389,7 @@ export class GameScene extends Container {
             hitContainer.texture = texture;
             this.setOwnPic();
         }
-        console.log(" reset game end");
+        //console.log(" reset game end");
     }
 
     private setOwnPic(): void {
@@ -490,14 +493,14 @@ export class GameScene extends Container {
                         //text.x -= 25;
                         //text.y -= 25;
                         slotsContainer.addChild(container);
-                        let imageRow: number = Math.floor(this.numbers[count - 1] / cols);
-                        let imageCol: number = this.numbers[count - 1] % rows;
+                        let imageRow: number = Math.floor((this.numbers[count - 1] - 1) / cols);
+                        let imageCol: number = (this.numbers[count - 1] -1) % rows;
                         //console.log(this.numbers[count - 1] + " " + imageRow + " " + imageCol)
                         let rect: any;
-                        if (numString == " ")
+                        /*if (numString == " ")
                             rect = new Rectangle(0, 0, sliceWidth, sliceHeight)
-                        else
-                            rect = new Rectangle(imageCol * sliceWidth, imageRow * sliceHeight, sliceWidth, sliceHeight);
+                        else*/
+                        rect = new Rectangle(imageCol * sliceWidth, imageRow * sliceHeight, sliceWidth, sliceHeight);
                         text.anchor.set(0.5);
                         container.name = "block" + this.currentLevel.toString() + numString;
                         ////console.log(rect);
@@ -511,15 +514,18 @@ export class GameScene extends Container {
                             ////console.log('Mouse Position:', event.data.global);
                             ////console.log(container.name + " " +container.x + " " + container.y);
                             //console.log(this.pivotContainer.x + " " + this.pivotContainer.y);
-                            let position = this.pivotContainer.position.clone();
-                            this.pivotContainer.position = container.position;
-                            container.position = position;
-                            //console.log(container.name + " " + container.x + " " + container.y);
-                            setTimeout(() => {
-                                this.checkWin();
-                                if (this.win) this.showWin();
-                            }, 250);
-
+                            let distance = this.getDistance(this.pivotContainer.position, container.position);
+                            if( distance == this.sliceWidth) {
+                                let position = this.pivotContainer.position.clone();
+                                this.pivotContainer.position = container.position;
+                                container.position = position;
+                                console.log("distance with pivot : " + distance);
+                                //console.log(container.name + " " + container.x + " " + container.y);
+                                setTimeout(() => {
+                                    this.checkWin();
+                                    if (this.win) this.showWin();
+                                }, 250);
+                            }
                         });
                         count++;
                     }
@@ -528,6 +534,12 @@ export class GameScene extends Container {
 
             (hintContainer.getChildByName("image" + this.pics[imageIndex]) as any).visible = true;
         }
+    }
+
+    private  getDistance(p1:PointData, p2:PointData): number {
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     private updateNumarr(): void {
@@ -654,10 +666,10 @@ export class GameScene extends Container {
         let win = true;
         //console.log("this.currentPic " + this.currentPic);
         let container: any = this.getChildByName("slots" + this.currentLevel.toString() + this.currentPic);
-        for (let containerId = 1; containerId <= this.numbers.length - 1; containerId++) {
+        for (let containerId = 1; containerId <= this.numbers.length-1; containerId++) {
             let child = container.getChildByName("block" + this.currentLevel.toString() + containerId.toString());
-            let imageRow: number = Math.floor(containerId / this.currentRows);
-            let imageCol: number = containerId % this.currentColumns;
+            let imageRow: number = Math.floor((containerId - 1) / this.currentRows);
+            let imageCol: number = (containerId - 1) % this.currentColumns;
             let X = Math.floor(child?.position._x as any);
             let Y = Math.floor(child?.position._y as any);
             let rowAlign: boolean = false;

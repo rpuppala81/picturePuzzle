@@ -38,5 +38,5 @@ export class GameConstants {
     static readonly EMPTY: string = "empty";
     static readonly IMAGE_WIDTH:number =  300;
     static readonly IMAGE_HEIGHT:number = 300;
-    static readonly LEVELS: number[] = [6, 5, 3, 4];
+    static readonly LEVELS: number[] = [6, 5, 4, 3];
 }
